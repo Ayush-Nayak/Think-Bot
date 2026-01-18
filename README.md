@@ -237,5 +237,5 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 <p align="center">
-  Built with ❤️ using LangGraph and Gemini
+  Learning AI - Powered ML Using Langchain discovering LLM
 </p>
