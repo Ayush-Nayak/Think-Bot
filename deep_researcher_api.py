@@ -108,7 +108,7 @@ If sufficient information exists, provide a verification message."""
     if response.need_clarification:
         return Command(goto=END, update={"messages": [AIMessage(content=response.question)]})
     else:
-        return Command(goto="planner_agent", update={"messages": [AIMessage(content=f"✅ {response.verification}\n\n🔍 Starting research...")]})
+        return Command(goto="planner_agent", update={"messages": [AIMessage(content=f" {response.verification}\n\n Starting research...")]})
 
 
 def planner_agent(state: AgentState) -> Command[Literal["researcher_agent"]]:
@@ -136,7 +136,7 @@ Generate 5-7 specific search queries and identify key topics."""
     plan = get_structured_response(plan_prompt, ResearchPlan)
 
     # Send progress message
-    progress_msg = f"""📋 **Research Brief Created**
+    progress_msg = f""" **Research Brief Created**
 
 {response.research_brief}
 
@@ -158,7 +158,7 @@ def researcher_agent(state: AgentState) -> Command[Literal["synthesis_agent"]]:
     search_queries = state.get("search_queries", [])
 
     raw_notes = []
-    progress_msg = f"🔎 **Researching...** Executing {len(search_queries)} search queries\n\n"
+    progress_msg = f" **Researching...** Executing {len(search_queries)} search queries\n\n"
 
     for i, query in enumerate(search_queries, 1):
         progress_msg += f"• Query {i}: {query}\n"
@@ -173,9 +173,9 @@ def researcher_agent(state: AgentState) -> Command[Literal["synthesis_agent"]]:
             else:
                 raw_notes.append(f"Query result:\n{results}")
         except Exception as e:
-            progress_msg += f"  ⚠️ Error: {e}\n"
+            progress_msg += f"   Error: {e}\n"
 
-    progress_msg += f"\n✅ Research complete! Collected data from {len(raw_notes)} sources"
+    progress_msg += f"\n Research complete! Collected data from {len(raw_notes)} sources"
 
     return Command(goto="synthesis_agent", update={
         "raw_notes": raw_notes,
@@ -216,7 +216,7 @@ Organize the notes by topic and preserve all specific details that would be usef
 
     return Command(goto="writer_agent", update={
         "notes": notes,
-        "messages": [AIMessage(content="📝 **Synthesizing findings...** Analyzing and organizing research data")]
+        "messages": [AIMessage(content=" **Synthesizing findings...** Analyzing and organizing research data")]
     })
 
 
@@ -279,7 +279,7 @@ Make the report comprehensive and include every useful specific detail from the 
 
     return Command(goto="critic_agent", update={
         "draft_report": report_text,
-        "messages": [AIMessage(content="✍️ **Writing report...** Creating comprehensive analysis")]
+        "messages": [AIMessage(content=" **Writing report...** Creating comprehensive analysis")]
     })
 
 
@@ -320,11 +320,11 @@ Reasoning: {critique.critique_reasoning}"""
         return Command(goto="writer_agent", update={
             "critique_feedback": feedback,
             "iteration_count": iteration + 1,
-            "messages": [AIMessage(content=f"🔄 **Refining report...** (Revision {iteration + 1}/{MAX_ITERATIONS})")]
+            "messages": [AIMessage(content=f" **Refining report...** (Revision {iteration + 1}/{MAX_ITERATIONS})")]
         })
     else:
         return Command(goto="finalizer", update={
-            "messages": [AIMessage(content="✅ **Report approved!** Finalizing and saving to Notion...")]
+            "messages": [AIMessage(content=" **Report approved!** Finalizing and saving to Notion...")]
         })
 
 
@@ -382,13 +382,13 @@ System: Multi-Agent with Reflection & Chain of Thought
         )
 
         if result["success"]:
-            notion_status = f"✅ **Saved to Notion!**\n\n📄 [Open Report in Notion]({result['url']})"
+            notion_status = f" **Saved to Notion!**\n\n [Open Report in Notion]({result['url']})"
             notion_url = result['url']
         else:
-            notion_status = f"⚠️ Failed to save to Notion: {result['error']}"
+            notion_status = f" Failed to save to Notion: {result['error']}"
 
     except Exception as e:
-        notion_status = f"⚠️ Notion integration error: {e}"
+        notion_status = f" Notion integration error: {e}"
 
     final_message = f"""{notion_status}
 
