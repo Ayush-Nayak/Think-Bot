@@ -102,8 +102,8 @@ The result? **Publication-ready research reports** automatically saved to your N
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/deep-researcher.git
-cd deep-researcher
+git clone https://github.com/Ayush-Nayak/Think-Bot.git
+cd Think-Bot
 ```
 
 ### 2. Set Up Backend
