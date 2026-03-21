@@ -20,7 +20,7 @@
 
 ## Want to use it First-Hand and experience Intelligence yourself ??
 
-use the link and commence the research : think-bot-navy.vercel.app 
+# use the link and commence the research : https://think-bot-navy.vercel.app/ 
 
 ## 🎯 What is Deep Researcher?
 
