@@ -16,26 +16,29 @@ interface Field {
   link:        string;
   linkLabel:   string;
   required:    boolean;
+  fixed?:      boolean;
 }
 
 const FIELDS: Field[] = [
   {
     key:         "deploymentUrl",
     label:       "LangGraph Deployment URL",
-    placeholder: "http://localhost:2024",
-    hint:        "The URL where your LangGraph server is running",
-    link:        "https://langchain-ai.github.io/langgraph/tutorials/",
-    linkLabel:   "LangGraph Docs",
+    placeholder: "https://think-bot.onrender.com",
+    hint:        "Hardcoded central AI server configuration",
+    link:        "https://think-bot.onrender.com",
+    linkLabel:   "Server",
     required:    true,
+    fixed:       true,
   },
   {
     key:         "assistantId",
     label:       "Assistant / Graph ID",
     placeholder: "deep_researcher",
-    hint:        "The graph name defined in langgraph.json",
+    hint:        "The locked AI research agent graph",
     link:        "https://github.com/Ayush-Nayak/Think-Bot/blob/main/langgraph.json",
     linkLabel:   "langgraph.json",
     required:    true,
+    fixed:       true,
   },
   {
     key:         "groqApiKey",
@@ -88,7 +91,7 @@ export default function SetupPage() {
   const router = useRouter();
 
   const [values, setValues] = useState<Record<string, string>>({
-    deploymentUrl:    "http://localhost:2024",
+    deploymentUrl:    "https://think-bot.onrender.com",
     assistantId:      "deep_researcher",
     groqApiKey:       "",
     tavilyApiKey:     "",
@@ -238,10 +241,18 @@ export default function SetupPage() {
                   <input
                     type={show || isText ? "text" : "password"}
                     value={val}
-                    onChange={(e) => setValue(field.key, e.target.value)}
+                    onChange={(e) => {
+                      if (!field.fixed) setValue(field.key, e.target.value);
+                    }}
                     placeholder={field.placeholder}
                     className={`input-field ${valid && val ? "valid" : ""}`}
-                    style={{ paddingRight: isText ? "1rem" : "2.8rem" }}
+                    style={{ 
+                      paddingRight: isText ? "1rem" : "2.8rem",
+                      opacity: field.fixed ? 0.7 : 1,
+                      cursor: field.fixed ? "not-allowed" : "text",
+                      backgroundColor: field.fixed ? "rgba(0,0,0,0.2)" : undefined
+                    }}
+                    readOnly={field.fixed}
                     autoComplete="off"
                     spellCheck={false}
                   />
