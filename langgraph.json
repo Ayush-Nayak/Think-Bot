@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "deep_researcher": "deep_researcher_api:build_full_workflow"
+  },
+  "env": ".env"
+}

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: think-bot-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: langgraph up --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      # No API keys needed here — all injected per-run from the frontend session
