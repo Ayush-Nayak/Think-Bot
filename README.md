@@ -18,6 +18,10 @@
 
 ---
 
+## Want to use it First-Hand and experience Intelligence yourself ??
+
+use the link and commence the research : think-bot-navy.vercel.app 
+
 ## 🎯 What is Deep Researcher?
 
 Deep Researcher is an intelligent research assistant that leverages **multi-agent AI architecture** to conduct thorough research on any topic. Instead of simple Q&A, it deploys a team of specialized AI agents that work together—planning research strategies, gathering information from the web, synthesizing findings, writing comprehensive reports, and self-critiquing for quality assurance.
