@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">🔬 Deep Researcher</h1>
+  <h1 align="center">🔬 Think-Bot </h1>
   <p align="center">
     <strong>AI-Powered Multi-Agent Research System</strong>
   </p>
@@ -24,7 +24,7 @@ use the link and commence the research : https://think-bot-navy.vercel.app/
 
 ## 🎯 What is Deep Researcher?
 
-Deep Researcher is an intelligent research assistant that leverages **multi-agent AI architecture** to conduct thorough research on any topic. Instead of simple Q&A, it deploys a team of specialized AI agents that work together—planning research strategies, gathering information from the web, synthesizing findings, writing comprehensive reports, and self-critiquing for quality assurance.
+Think-Bot is an intelligent research assistant that leverages **multi-agent AI architecture** to conduct thorough research on any topic. Instead of simple Q&A, it deploys a team of specialized AI agents that work together—planning research strategies, gathering information from the web, synthesizing findings, writing comprehensive reports, and self-critiquing for quality assurance.
 
 The result? **Publication-ready research reports** automatically saved to your Notion workspace.
 
